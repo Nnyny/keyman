@@ -2053,14 +2053,16 @@ public final class KMManager {
     i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);     // Required to call startActivity() from outside of an Activity context
 
     if (kbType == KeyboardType.KEYBOARD_TYPE_SYSTEM) {
+      i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
       i.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+      i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
       //i.addFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
 
       // Only clear activity flag for external applications
-      String parentApplication = (context.getApplicationInfo() != null) ? context.getApplicationInfo().toString() : "";
+      /*String parentApplication = (context.getApplicationInfo() != null) ? context.getApplicationInfo().toString() : "";
       if (!parentApplication.contains("com.tavultesoft")) {
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-      }
+      }*/
     }
 
     i.putExtra(KMKey_DisplayKeyboardSwitcher, kbType == KeyboardType.KEYBOARD_TYPE_SYSTEM);
